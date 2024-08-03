@@ -1,4 +1,4 @@
-export class updateWishlistDto {
+export class UpdateWishlistDto {
   name: string;
   image: string;
   description: string;

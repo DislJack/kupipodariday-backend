@@ -2,6 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColu
 import {IsString, Min, Max, Matches} from 'class-validator';
 import { URLRegExp } from 'src/utils/reg-exps';
 import { Wish } from 'src/wishes/wishes.entity';
+import { User } from 'src/users/users.entity';
 
 @Entity()
 export class Wishlist {
@@ -20,7 +21,7 @@ export class Wishlist {
   @IsString()
   name: string;
 
-  @Column()
+  @Column({default: ''})
   @Max(1500)
   @IsString()
   description: string
@@ -28,6 +29,9 @@ export class Wishlist {
   @Column()
   @Matches(URLRegExp)
   image: string;
+
+  @ManyToOne(() => User, (owner) => owner.wishlists)
+  owner: User;
   
   @ManyToOne(() => Wish)
   @JoinTable()

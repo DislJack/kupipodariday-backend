@@ -36,7 +36,7 @@ export class Wish {
   @Matches(decimalRegExp)
   price: number;
 
-  @Column({type: 'decimal'})
+  @Column({type: 'decimal', default: 0})
   @Matches(decimalRegExp)
   rised: number;
 
@@ -52,7 +52,7 @@ export class Wish {
   @OneToMany(() => Offer, (offer) => offer.item)
   offers: Offer[];
 
-  @Column({type: 'decimal'})
+  @Column({type: 'decimal', default: 0})
   @IsInt()
   copied: number;
 }
